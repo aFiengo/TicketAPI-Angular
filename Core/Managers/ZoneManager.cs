@@ -35,8 +35,10 @@ namespace Truextend.TicketDispenser.Core.Managers
             {
                 throw new Exception("A name is required");
             }
-            int capacity = _venueManager.GetById(venueID).TotalCapacity * (new Random().Next(1, 100) / 100);
-            zoneToAdd.Capacity = capacity;
+            int venueCapacity = _venueManager.GetById(venueID).TotalCapacity;
+            float percentage = ((float)new Random().NextDouble());
+            float capacity = venueCapacity * percentage;
+            zoneToAdd.Capacity = ((int)capacity);
             _zones.Add(zoneToAdd);
             return zoneToAdd;
         }
