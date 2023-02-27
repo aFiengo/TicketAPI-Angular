@@ -3,7 +3,6 @@
   "profiles": {
     "Development": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:8800",
@@ -22,3 +21,4 @@
       }
     }
   }
+}

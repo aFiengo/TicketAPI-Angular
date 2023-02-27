@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Core.Models;
-
+/*
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {
     [Route("api/event")]
@@ -41,4 +41,4 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             return Ok(deletedEvent);
         }
     }
-}
+}*/
