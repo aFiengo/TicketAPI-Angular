@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Truextend.TicketDispenser.Core.Models;
-
+/*
 namespace Truextend.TicketDispenser.Core.Managers
 { 
     public class EventShowManager
@@ -51,4 +51,4 @@ namespace Truextend.TicketDispenser.Core.Managers
                 return eventFound;
         }
     }
-}
+}*/
