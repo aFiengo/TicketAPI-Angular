@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "MpGvYnH0WsMhJZz3ocoTgutfs/PQyJA9m7FpTVoIeM0mxDRtQM8Rehfwsrj87oSY0VPfIqX/Z7TxuGgIVaep8w==",
+  "success": true,
+  "projectFilePath": "D:\\Training\\Ariel Fiengo\\Training\\WebAPP-API workshop\\TicketDispenserAPI\\TicketsAPI\\TicketDispenserAPP\\TicketDispenserAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ariel.fiengo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\ariel.fiengo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\ariel.fiengo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\ariel.fiengo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\ariel.fiengo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\ariel.fiengo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
