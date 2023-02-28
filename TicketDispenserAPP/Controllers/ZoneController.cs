@@ -23,9 +23,9 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateZone([FromBody] Zone zoneToAdd, [FromHeader] int id)
+        public IActionResult CreateZone( [FromBody] Zone zoneToAdd, [FromHeader] int id)
         {
-            this._zoneManager.AddZone(zoneToAdd, id);
+            this._zoneManager.AddZone(zoneToAdd, id, 0.54f);
             return Ok(zoneToAdd);
         }
 

@@ -21,21 +21,21 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             return Ok(events);
         }
         [HttpPost]
-        public IActionResult CreateEvent(Guid id, string category, string name, DateTime date, string veneName, string city, string country, int capacity)
+        public IActionResult CreateEvent([FromBody] EventShow eventToAdd, int categoryId, int venueId)
         {
-            EventShow createdEvent = _eventManager.AddEvent(id, category, name, date, veneName, city, country, capacity);
-            return Ok(createdEvent);
+            this._eventManager.AddEvent(eventToAdd, categoryId, venueId);
+            return Ok(eventToAdd);
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateEvent([FromRoute] Guid id, [FromBody] EventShow selectedEvent)
+        public IActionResult UpdateEvent([FromRoute] int id, [FromBody] EventShow selectedEvent)
         {
             EventShow eventToUpdate = _eventManager.UpdateEvent(id, selectedEvent);
             return Ok(eventToUpdate);
         }
         [HttpDelete]
         [Route("{Id}")]
-        public IActionResult DeleteEvent([FromRoute] Guid Id) 
+        public IActionResult DeleteEvent([FromRoute] int Id) 
         {
             EventShow deletedEvent = _eventManager.DeleteEvent(Id);
             return Ok(deletedEvent);
