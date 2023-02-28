@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Models
+namespace Truextend.TicketDispenser.Core.Models
 {
     public class Venue
     {
@@ -12,8 +12,7 @@ namespace Core.Models
         public string Name { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public int SeatedCapacity { get; set; }
-        public int FieldCapacity { get; set; }
         public int TotalCapacity { get; set; }
+        public List<Zone> Zones { get; set; }
     }
 }

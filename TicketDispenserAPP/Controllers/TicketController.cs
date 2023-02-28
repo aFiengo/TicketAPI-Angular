@@ -2,37 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.TicketDispenserAPI.Controllers.Base;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {
     [Route("api/ticket")]
     [ApiController]
-    public class TicketController : ControllerBase
+    public class TicketController : TicketBaseController<Ticket>
     {
         private readonly TicketManager _ticketManager;
-        public TicketController(TicketManager ticketManager)
+        public TicketController(TicketManager ticketManager) : base(ticketManager)
         {
             _ticketManager = ticketManager;
-        }
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok();
-        }
-        [HttpPost]
-        public IActionResult Post()
-        {
-            return Ok();
-        }
-        [HttpPut]
-        public IActionResult Put() 
-        {
-            return Ok();
-        }
-        [HttpDelete]
-        public IActionResult Delete() 
-        {
-            return Ok();
         }
     }
 }

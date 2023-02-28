@@ -3,47 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.TicketDispenserAPI.Controllers.Base;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {
     [Route("api/zone")]
     [ApiController]
-    public class ZoneController : ControllerBase
+    public class ZoneController : TicketBaseController<Zone>
     {
         private readonly ZoneManager _zoneManager;
-        public ZoneController(ZoneManager zoneManager)
+        public ZoneController(ZoneManager zoneManager) : base(zoneManager)
         {
             _zoneManager = zoneManager;
         }
-        [HttpGet]
-        public IActionResult GetZones()
-        {
-            List<Zone> zones = _zoneManager.GetZones();
-            return Ok(zones);
-        }
 
         [HttpPost]
-        public IActionResult CreateZone([FromBody] Zone zoneToAdd, [FromHeader] int id)
+        [Route("vanue/{venueId}")]
+        public IActionResult CreateZoneByVenue([FromBody] Zone zoneToAdd, [FromRoute] int venueId)
         {
-            this._zoneManager.AddZone(zoneToAdd, id);
+            this._zoneManager.CreateByVenue(venueId, zoneToAdd);
             return Ok(zoneToAdd);
-        }
-
-        [HttpPut]
-        [Route("{Id}")]
-        public IActionResult UpdateZone([FromRoute] int Id, [FromBody] Zone zoneToUpdate) 
-        {
-            return Ok(this._zoneManager.UpdateZone(Id, zoneToUpdate));
-            /*Zone selectedZone = _zoneManager.UpdateZone(Id, zoneToUpdate);
-            return Ok(selectedZone);*/
-        }
-
-        [HttpDelete]
-        [Route ("{id}")] 
-        public IActionResult DeleteZone([FromRoute] int id)
-        {
-            Zone zoneToDelete = _zoneManager.DeleteZone(id);
-            return Ok(zoneToDelete);
         }
     }
 }
