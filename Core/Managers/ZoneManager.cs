@@ -7,10 +7,12 @@ namespace Truextend.TicketDispenser.Core.Managers
     public class ZoneManager : IZoneManager
     {
         private List<Zone> _zones;
-        private VenueManager _venueManager;
-        public ZoneManager(VenueManager venueManager)
+        private readonly VenueManager _venueManager;
+        private readonly EventShowManager _eventShowManager;
+        public ZoneManager(VenueManager venueManager, EventShowManager eventShowManager)
         {
             _venueManager = venueManager;
+            _eventShowManager = eventShowManager;
             _zones = new List<Zone>()
             {
                 new Zone() {Id = 1, Name = "Butaca", TicketPrice = 130, Capacity = 3000},
