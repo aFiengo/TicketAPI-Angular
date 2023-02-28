@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Models
+namespace Truextend.TicketDispenser.Core.Models
 {
-    public class CategoryModel
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }

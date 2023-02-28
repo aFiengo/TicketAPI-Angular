@@ -6,31 +6,31 @@ using System.Text;
 using System.Threading.Tasks;
 using Truextend.TicketDispenser.Core.Models;
 
-namespace Core.Managers
+namespace Truextend.TicketDispenser.Core.Managers
 {
     public class VenueManager
     {
-        private List<VenueModel> _venues;
+        private List<Venue> _venues;
         public VenueManager() 
         {
-            _venues = new List<VenueModel>()
+            _venues = new List<Venue>()
             {
-                new VenueModel() { Id = 1, Name = "Felix Capriles", City = "Cochabamba", Country = "Bolivia", SeatedCapacity = 35000, FieldCapacity = 10000, TotalCapacity = 45000},
-                new VenueModel() { Id = 2, Name = "Hernando Siles", City = "La Paz", Country = "Bolivia", SeatedCapacity = 42000, FieldCapacity = 12000, TotalCapacity = 57000},
-                new VenueModel() { Id = 3, Name = "Ramon 'Tahuichi' Aguilera", City = "Santa Cruz de la Sierra", Country = "Bolivia", SeatedCapacity = 38000, FieldCapacity = 11000, TotalCapacity = 49000},
-                new VenueModel() { Id = 4, Name = "Estadio Monumental", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 83214, FieldCapacity = 15000 , TotalCapacity = 98214 },
-                new VenueModel() { Id = 5, Name = "Hipodromo de San Isidro", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 18000, FieldCapacity = 80000, TotalCapacity = 98000 },
-                new VenueModel() { Id = 6, Name = "SoFi Stadium", City = "Inglewood, California", Country = "USA", SeatedCapacity = 90000, FieldCapacity = 5000, TotalCapacity = 95000},
-                new VenueModel() { Id = 7, Name = "Donington Park", City = "Leicestershire", Country = "England", SeatedCapacity = 0 , FieldCapacity = 110000, TotalCapacity = 111000},
-                new VenueModel() { Id = 8, Name = "De Schorre park", City = "Boom", Country = "Belgium", SeatedCapacity = 0, FieldCapacity = 200000, TotalCapacity = 200000 },
-                new VenueModel() { Id = 9, Name = "Albert Park Grand Prix Circuit", City = "Melbourne", Country = "Australia", SeatedCapacity = 45000, FieldCapacity = 0, TotalCapacity = 45000}
+                new Venue() { Id = 1, Name = "Felix Capriles", City = "Cochabamba", Country = "Bolivia", SeatedCapacity = 35000, FieldCapacity = 10000, TotalCapacity = 45000},
+                new Venue() { Id = 2, Name = "Hernando Siles", City = "La Paz", Country = "Bolivia", SeatedCapacity = 42000, FieldCapacity = 12000, TotalCapacity = 57000},
+                new Venue() { Id = 3, Name = "Ramon 'Tahuichi' Aguilera", City = "Santa Cruz de la Sierra", Country = "Bolivia", SeatedCapacity = 38000, FieldCapacity = 11000, TotalCapacity = 49000},
+                new Venue() { Id = 4, Name = "Estadio Monumental", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 83214, FieldCapacity = 15000 , TotalCapacity = 98214 },
+                new Venue() { Id = 5, Name = "Hipodromo de San Isidro", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 18000, FieldCapacity = 80000, TotalCapacity = 98000 },
+                new Venue() { Id = 6, Name = "SoFi Stadium", City = "Inglewood, California", Country = "USA", SeatedCapacity = 90000, FieldCapacity = 5000, TotalCapacity = 95000},
+                new Venue() { Id = 7, Name = "Donington Park", City = "Leicestershire", Country = "England", SeatedCapacity = 0 , FieldCapacity = 110000, TotalCapacity = 111000},
+                new Venue() { Id = 8, Name = "De Schorre park", City = "Boom", Country = "Belgium", SeatedCapacity = 0, FieldCapacity = 200000, TotalCapacity = 200000 },
+                new Venue() { Id = 9, Name = "Albert Park Grand Prix Circuit", City = "Melbourne", Country = "Australia", SeatedCapacity = 45000, FieldCapacity = 0, TotalCapacity = 45000}
             };
         }
-        public List<VenueModel> GetVenue()
+        public List<Venue> GetVenues()
         {
             return _venues;
         }
-        public VenueModel AddVenue(VenueModel venueToAdd)
+        public Venue AddVenue(Venue venueToAdd)
         {
             if (String.IsNullOrEmpty(venueToAdd.Name))
             {
@@ -39,9 +39,9 @@ namespace Core.Managers
             _venues.Add(venueToAdd);
             return venueToAdd;
         }
-        public VenueModel UpdateZone(int id, VenueModel venueToUpdate)
+        public Venue UpdateVenue(int id, Venue venueToUpdate)
         {
-            VenueModel venue = _venues.FirstOrDefault(z => z.Id == id);
+            Venue venue = _venues.FirstOrDefault(z => z.Id == id);
             if (venue != null)
             {
                 venue.Name = venueToUpdate.Name;
@@ -52,15 +52,15 @@ namespace Core.Managers
             return venueToUpdate;
 
         }
-        public VenueModel DeleteZone(int id)
+        public Venue DeleteVenue(int id)
         {
-            VenueModel venueFound = _venues.Find(z => z.Id == id);
+            Venue venueFound = _venues.Find(z => z.Id == id);
             _venues.Remove(venueFound);
             return venueFound;
         }
-        public VenueModel GetById(int id)
+        public Venue GetById(int id)
         {
-            VenueModel selectedVenue = _venues.Find(z => z.Id == id);
+            Venue selectedVenue = _venues.Find(z => z.Id == id);
             if(selectedVenue == null) 
             {
                 throw new Exception("Id Not Found");
