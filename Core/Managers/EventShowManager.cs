@@ -1,38 +1,44 @@
-﻿using Truextend.TicketDispenser.Core.Models;
-using Truextend.TicketDispenser.Core.Models.DTOs;
+﻿using AutoMapper;
+
 using Truextend.TicketDispenser.Core.Managers.Interface;
-using AutoMapper;
+using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.Core.Managers;
 public class EventShowManager : IEventShowManager
 {
     private List<EventShow> _events;
-    private readonly VenueManager _venueManager;
-    private readonly CategoryManager _categoryManager;
     private readonly ZoneManager _zoneManager;
     private readonly IMapper _mapper;
-    public EventShowManager(VenueManager venueManager, CategoryManager categoryManager, ZoneManager zoneManager, IMapper mapper)
+    public EventShowManager(ZoneManager zoneManager, IMapper mapper)
     {
-        _venueManager = venueManager;
-        _categoryManager = categoryManager;
         _zoneManager = zoneManager;
         _mapper = mapper;
         _events = new List<EventShow>()
             {
                 new EventShow() {
                     Id = 1,
-                    Category = _categoryManager.GetById(1),
+                    Category = new Category() {
+                        Id = 1,
+                        Name = "Music"
+                    },
                     Name = "Llajta Rock",
                     EventDate = new DateTime(2023, 05, 25, 15, 0, 0),
-                    Venue = _venueManager.GetById(1) ,
+                    Venue = new Venue() { 
+                        Id = 1, 
+                        Name = "Felix Capriles", 
+                        City = "Cochabamba", 
+                        Country = "Bolivia", 
+                        TotalCapacity = 45000
+                    },
                     Zones = new List<Zone>()
                 }
             };
     }
 
-    public EventShow Create(EventShow item)
+    public EventShowDTO Create(EventShowDTO item)
     {
-        _events.Add(item);
+        _events.Add(_mapper.Map<EventShow>(item));
         return item;
     }
 
@@ -42,28 +48,29 @@ public class EventShowManager : IEventShowManager
         return _events.Remove(eventShow);
     }
 
-    public List<EventShow> GetAll()
+    public List<EventShowDTO> GetAll()
     {
-        return _events;
+        return _mapper.Map<List<EventShowDTO>>(_events);
     }
 
-    public EventShow GetById(int id)
+    public EventShowDTO GetById(int id)
     {
-        return _events.Find(e => e.Id == id);
+        EventShow eventShow = _events.Find(e => e.Id == id);
+        return _mapper.Map<EventShowDTO>(eventShow);
     }
 
-    public EventShow Update(int id, EventShow item)
+    public EventShowDTO Update(int id, EventShowDTO item)
     {
         throw new NotImplementedException();
     }
 
-    public EventShow UpdateZone(int eventId, int zoneId)
+    public EventShowDTO UpdateZone(int eventId, int zoneId)
     {
         EventShow eventShow = _events.Find(e => e.Id == eventId);
         Zone zone = _mapper.Map<Zone>(_zoneManager.GetById(zoneId));
         float capacity = eventShow.Venue.TotalCapacity * zone.Percentage;
         zone.Capacity = ((int)capacity);
         eventShow.Zones.Add(zone);
-        return eventShow;
+        return _mapper.Map<EventShowDTO>(eventShow);
     }
 }

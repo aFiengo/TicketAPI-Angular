@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.TicketDispenserAPI.Controllers.Base;
-using Truextend.TicketDispenser.Core.Models.DTOs;
+using Truextend.TicketDispenser.Core.Models;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers;
 [Route("api/zone")]

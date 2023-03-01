@@ -1,0 +1,6 @@
+namespace Truextend.TicketDispenser.Data.Models.Base;
+
+public class Entity
+{
+    public int Id { get; set; }
+}

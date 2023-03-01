@@ -7,7 +7,7 @@ using Truextend.TicketDispenser.TicketDispenserAPI.Controllers.Base;
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers;
 [Route("api/event")]
 [ApiController]
-public class EventShowController : TicketBaseController<EventShow>
+public class EventShowController : TicketBaseController<EventShowDTO>
 {
     private readonly EventShowManager _eventManager;
     public EventShowController(EventShowManager eventManager) : base(eventManager)

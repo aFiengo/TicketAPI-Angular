@@ -1,7 +1,7 @@
 ﻿using Truextend.TicketDispenser.Core.Managers.Base;
-using Truextend.TicketDispenser.Core.Models.DTOs;
 using Truextend.TicketDispenser.Core.Models;
 using AutoMapper;
+using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.Core.Managers;
 public class ZoneManager : IGenericManager<ZoneDTO>

@@ -1,7 +1,7 @@
-using Truextend.TicketDispenser.Core.Models.DTOs;
+﻿using Truextend.TicketDispenser.Data.Models.Base;
 
-namespace Truextend.TicketDispenser.Core.Models.DTOs;
-public class EventShowDTO
+namespace Truextend.TicketDispenser.Data.Models;
+public class EventShow : Entity
 {
     public int Id { get; set; }
     public Category Category { get; set; }
@@ -9,5 +9,5 @@ public class EventShowDTO
     public DateTime EventDate { get; set; }
     public Venue Venue { get; set; }
 
-    public List<ZoneDTO> Zones { get; set; }
+    public List<Zone> Zones { get; set; }
 }

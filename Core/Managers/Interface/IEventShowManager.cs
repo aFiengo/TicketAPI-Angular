@@ -2,7 +2,7 @@ using Truextend.TicketDispenser.Core.Managers.Base;
 using Truextend.TicketDispenser.Core.Models;
 
 namespace Truextend.TicketDispenser.Core.Managers.Interface;
-public interface IEventShowManager : IGenericManager<EventShow>
+public interface IEventShowManager : IGenericManager<EventShowDTO>
 {
-    EventShow UpdateZone(int eventId, int zoneId);
+    EventShowDTO UpdateZone(int eventId, int zoneId);
 }

@@ -1,16 +1,23 @@
+using Truextend.Rewards.Data;
 using Truextend.TicketDispenser.Core.Managers;
+using Truextend.TicketDispenser.Data;
+using Truextend.TicketDispenserAPI.Configuration;
+using Truextend.TicketDispenserAPI.Configuration.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //builder.Services.AddSingleton<EventShowManager>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddSingleton<UserManager>();
-builder.Services.AddSingleton<VenueManager>();
+//builder.Services.AddSingleton<UserManager>();
+//builder.Services.AddSingleton<VenueManager>();
 builder.Services.AddSingleton<ZoneManager>();
-builder.Services.AddSingleton<TicketManager>();
-builder.Services.AddSingleton<CategoryManager>();
+//builder.Services.AddSingleton<TicketManager>();
+//builder.Services.AddSingleton<CategoryManager>();
 builder.Services.AddSingleton<EventShowManager>();
+builder.Services.AddTransient<IApplicationConfiguration, ApplicationConfiguration>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

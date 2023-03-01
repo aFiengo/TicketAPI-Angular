@@ -1,5 +1,5 @@
-﻿namespace Truextend.TicketDispenser.Core.Models;
-public class Venue
+namespace Truextend.TicketDispenser.Core.Models;
+public class VenueDTO
 {
     public int Id { get; set; }
     public string Name { get; set; }
