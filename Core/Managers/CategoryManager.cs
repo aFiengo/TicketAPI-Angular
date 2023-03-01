@@ -1,17 +1,13 @@
-﻿
+﻿using Truextend.TicketDispenser.Core.Models;
 
-
-using Truextend.TicketDispenser.Core.Models;
-
-namespace Truextend.TicketDispenser.Core.Managers
+namespace Truextend.TicketDispenser.Core.Managers;
+public class CategoryManager
 {
-    public class CategoryManager
-    {
-        private List<Category> _categories;
+    private List<Category> _categories;
 
-        public CategoryManager()
-        {
-            _categories = new List<Category>()
+    public CategoryManager()
+    {
+        _categories = new List<Category>()
             {
                 new Category() {
                     Id = 1,
@@ -22,19 +18,15 @@ namespace Truextend.TicketDispenser.Core.Managers
                     Name = "Sport"
                 }
             };
-        }
-        public Category GetById(int id)
-        {
-            Category selectedCategory = _categories.Find(v => v.Id == id);
-            if (selectedCategory == null)
-            {
-                throw new Exception("Id Not Found");
-            }
-            return selectedCategory;
-        }
-
     }
-
-
+    public Category GetById(int id)
+    {
+        Category selectedCategory = _categories.Find(v => v.Id == id);
+        if (selectedCategory == null)
+        {
+            throw new Exception("Id Not Found");
+        }
+        return selectedCategory;
+    }
 
 }

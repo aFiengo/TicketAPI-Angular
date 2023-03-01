@@ -1,10 +1,10 @@
 using Truextend.TicketDispenser.Core.Managers;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //builder.Services.AddSingleton<EventShowManager>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSingleton<UserManager>();
 builder.Services.AddSingleton<VenueManager>();
 builder.Services.AddSingleton<ZoneManager>();

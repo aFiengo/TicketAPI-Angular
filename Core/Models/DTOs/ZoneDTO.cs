@@ -1,0 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace Truextend.TicketDispenser.Core.Models.DTOs;
+public class ZoneDTO
+{
+    public int id { get; set; }
+
+    [Required]
+    public string Name { get; set; }
+
+    [Required]
+    public int TicketPrice { get; set; }
+}

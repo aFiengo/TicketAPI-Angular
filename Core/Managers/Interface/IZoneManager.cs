@@ -1,10 +1,9 @@
 using Truextend.TicketDispenser.Core.Managers.Base;
 using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.Core.Models.DTOs;
 
-namespace Truextend.TicketDispenser.Core.Managers.Interface 
+namespace Truextend.TicketDispenser.Core.Managers.Interface;
+public interface IZoneManager : IGenericManager<ZoneDTO>
 {
-    public interface IZoneManager : IGenericManager<Zone>
-    {
-        Zone CreateByVenue(int id, Zone zone);
-    }
+    ZoneDTO CreateByEvent(int eventId, ZoneDTO zone);
 }
