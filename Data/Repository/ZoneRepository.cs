@@ -6,6 +6,6 @@ using Truextend.TicketDispenserAPI.Data;
 namespace Truextend.TicketDispenser.Data.Repository;
 public class ZoneRepository : Repository<Zone>, IZoneRepository
 {
-    public ZoneRepository(TicketDispenserDBContext rewardsDBContext) : base(rewardsDBContext) { }
+    public ZoneRepository(TicketDispenserDBContext ticketDBContext) : base(ticketDBContext) { }
 
 }

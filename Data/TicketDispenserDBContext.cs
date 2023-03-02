@@ -39,17 +39,14 @@ public class TicketDispenserDBContext : DbContext
                     .HasColumnName("name");
 
                 entity.Property(zone => zone.Capacity)
-                    .IsRequired()
                     .HasColumnType("int")
                     .HasColumnName("capacity");
 
                 entity.Property(zone => zone.TicketPrice)
-                    .IsRequired()
                     .HasColumnType("float(53)")
                     .HasColumnName("ticket_price");
 
                 entity.Property(zone => zone.Percentage)
-                    .IsRequired()
                     .HasColumnType("float")
                     .HasColumnName("percentage");
             });

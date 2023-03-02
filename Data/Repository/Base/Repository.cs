@@ -41,8 +41,14 @@ namespace Truextend.TicketDispenser.Data.Repository.Base
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            List<T> values = await dbContext.Set<T>().ToListAsync();
-            return values;
+            try {
+                List<T> values = await dbContext.Set<T>().ToListAsync();
+                return values;
+            } catch (Exception e){
+                Console.WriteLine(e.InnerException);
+                return null;
+            }
+            
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, Boolean>> predicate)
