@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +15,15 @@ namespace Truextend.TicketDispenser.Core.Managers
         {
             _venues = new List<Venue>()
             {
-                new Venue() { Id = 1, Name = "Felix Capriles", City = "Cochabamba", Country = "Bolivia", SeatedCapacity = 35000, FieldCapacity = 10000, TotalCapacity = 45000},
-                new Venue() { Id = 2, Name = "Hernando Siles", City = "La Paz", Country = "Bolivia", SeatedCapacity = 42000, FieldCapacity = 12000, TotalCapacity = 57000},
-                new Venue() { Id = 3, Name = "Ramon 'Tahuichi' Aguilera", City = "Santa Cruz de la Sierra", Country = "Bolivia", SeatedCapacity = 38000, FieldCapacity = 11000, TotalCapacity = 49000},
-                new Venue() { Id = 4, Name = "Estadio Monumental", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 83214, FieldCapacity = 15000 , TotalCapacity = 98214 },
-                new Venue() { Id = 5, Name = "Hipodromo de San Isidro", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 18000, FieldCapacity = 80000, TotalCapacity = 98000 },
-                new Venue() { Id = 6, Name = "SoFi Stadium", City = "Inglewood, California", Country = "USA", SeatedCapacity = 90000, FieldCapacity = 5000, TotalCapacity = 95000},
-                new Venue() { Id = 7, Name = "Donington Park", City = "Leicestershire", Country = "England", SeatedCapacity = 0 , FieldCapacity = 110000, TotalCapacity = 111000},
-                new Venue() { Id = 8, Name = "De Schorre park", City = "Boom", Country = "Belgium", SeatedCapacity = 0, FieldCapacity = 200000, TotalCapacity = 200000 },
-                new Venue() { Id = 9, Name = "Albert Park Grand Prix Circuit", City = "Melbourne", Country = "Australia", SeatedCapacity = 45000, FieldCapacity = 0, TotalCapacity = 45000}
+                new Venue() { Id = 1, Name = "Felix Capriles", City = "Cochabamba", Country = "Bolivia", SeatedCapacity = 35000, FieldCapacity = 10000},
+                new Venue() { Id = 2, Name = "Hernando Siles", City = "La Paz", Country = "Bolivia", SeatedCapacity = 42000, FieldCapacity = 12000},
+                new Venue() { Id = 3, Name = "Ramon 'Tahuichi' Aguilera", City = "Santa Cruz de la Sierra", Country = "Bolivia", SeatedCapacity = 38000, FieldCapacity = 11000},
+                new Venue() { Id = 4, Name = "Estadio Monumental", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 83214, FieldCapacity = 15000},
+                new Venue() { Id = 5, Name = "Hipodromo de San Isidro", City = "Buenos Aires", Country = "Argentina", SeatedCapacity = 18000, FieldCapacity = 80000},
+                new Venue() { Id = 6, Name = "SoFi Stadium", City = "Inglewood, California", Country = "USA", SeatedCapacity = 90000, FieldCapacity = 5000},
+                new Venue() { Id = 7, Name = "Donington Park", City = "Leicestershire", Country = "England", SeatedCapacity = 0 , FieldCapacity = 110000},
+                new Venue() { Id = 8, Name = "De Schorre park", City = "Boom", Country = "Belgium", SeatedCapacity = 0, FieldCapacity = 200000 },
+                new Venue() { Id = 9, Name = "Albert Park Grand Prix Circuit", City = "Melbourne", Country = "Australia", SeatedCapacity = 45000, FieldCapacity = 0}
             };
         }
         public List<Venue> GetVenues()
@@ -39,7 +39,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             _venues.Add(venueToAdd);
             return venueToAdd;
         }
-        public Venue UpdateVenue(int id, Venue venueToUpdate)
+        public Venue UpdateVenueById(int id, Venue venueToUpdate)
         {
             Venue venue = _venues.FirstOrDefault(z => z.Id == id);
             if (venue != null)
@@ -47,18 +47,18 @@ namespace Truextend.TicketDispenser.Core.Managers
                 venue.Name = venueToUpdate.Name;
                 venue.SeatedCapacity = venueToUpdate.SeatedCapacity;
                 venue.FieldCapacity = venueToUpdate.FieldCapacity;
-                venue.TotalCapacity = venueToUpdate.TotalCapacity;
+                
             }
             return venueToUpdate;
 
         }
-        public Venue DeleteVenue(int id)
+        public Venue DeleteVenueById(int id) //ById
         {
             Venue venueFound = _venues.Find(z => z.Id == id);
             _venues.Remove(venueFound);
             return venueFound;
         }
-        public Venue GetById(int id)
+        public Venue GetVenueById(int id)
         {
             Venue selectedVenue = _venues.Find(z => z.Id == id);
             if(selectedVenue == null) 

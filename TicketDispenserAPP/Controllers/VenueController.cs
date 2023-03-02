@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -35,14 +35,14 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         [Route("{Id}")]
         public IActionResult UpdateVenue([FromRoute] int Id, [FromBody] Venue venueToUpdate)
         {
-            return Ok(this._venueManager.UpdateVenue(Id, venueToUpdate));
+            return Ok(this._venueManager.UpdateVenueById(Id, venueToUpdate));
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult DeleteVenue([FromRoute] int id)
         {
-            Venue venueToDelete = _venueManager.DeleteVenue(id);
+            Venue venueToDelete = _venueManager.DeleteVenueById(id);
             return Ok(venueToDelete);
         }
     }

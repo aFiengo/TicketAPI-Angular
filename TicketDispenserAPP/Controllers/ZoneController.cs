@@ -33,7 +33,7 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         [Route("{Id}")]
         public IActionResult UpdateZone([FromRoute] int Id, [FromBody] Zone zoneToUpdate) 
         {
-            return Ok(this._zoneManager.UpdateZone(Id, zoneToUpdate));
+            return Ok(this._zoneManager.UpdateZoneById(Id, zoneToUpdate));
             /*Zone selectedZone = _zoneManager.UpdateZone(Id, zoneToUpdate);
             return Ok(selectedZone);*/
         }
@@ -42,7 +42,7 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         [Route ("{id}")] 
         public IActionResult DeleteZone([FromRoute] int id)
         {
-            Zone zoneToDelete = _zoneManager.DeleteZone(id);
+            Zone zoneToDelete = _zoneManager.DeleteZoneById(id);
             return Ok(zoneToDelete);
         }
     }

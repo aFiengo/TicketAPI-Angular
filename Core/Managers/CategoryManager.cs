@@ -33,7 +33,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             _categories.Add(categoryToAdd);
             return categoryToAdd;
         }
-        public Category UpdateCategory(int id, Category categoryToUpdate)
+        public Category UpdateCategoryById(int id, Category categoryToUpdate)
         {
             Category category = _categories.FirstOrDefault(z => z.Id == id);
             if (category != null)
@@ -43,13 +43,13 @@ namespace Truextend.TicketDispenser.Core.Managers
             return categoryToUpdate;
 
         }
-        public Category DeleteCategory(int id)
+        public Category DeleteCategoryById(int id)
         {
             Category categoryFound = _categories.Find(z => z.Id == id);
             _categories.Remove(categoryFound);
             return categoryFound;
         }
-        public Category GetById(int id)
+        public Category GetCategoryById(int id)
         {
             Category selectedCategory = _categories.Find(z => z.Id == id);
             if (selectedCategory == null)

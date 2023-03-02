@@ -30,14 +30,14 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         [Route ("{id}")]
         public IActionResult UpdateUser([FromRoute] int id, [FromBody] User selectedUser) 
         {
-            User userToUpdate = _userManager.UpdateUser(id, selectedUser);
+            User userToUpdate = _userManager.UpdateUserById(id, selectedUser);
             return Ok(userToUpdate);
         }
         [HttpDelete]
         [Route ("{id}")]
         public IActionResult DeleteUser([FromRoute] int id) 
         {
-            User userToDelete = _userManager.DeleteUser(id);
+            User userToDelete = _userManager.DeleteUserById(id);
             return Ok(userToDelete);
         }
     }

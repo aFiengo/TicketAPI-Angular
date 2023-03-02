@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +14,18 @@ namespace Truextend.TicketDispenser.Core.Managers
         private CategoryManager _categoryManager;
         private VenueManager _venueManager;
         private ZoneManager _zoneManager;
-        public EventShowManager(CategoryManager categoryManager, VenueManager venueManager, ZoneManager zoneManager) 
+        public EventShowManager(CategoryManager categoryManager, int categoryId, VenueManager venueManager, int venueId, ZoneManager zoneManager, int zoneId) 
         {
             _categoryManager = categoryManager;
             _venueManager = venueManager;
             _zoneManager = zoneManager;
 
-            Category selectedCategory = categoryManager.GetById(1);
+            Category selectedCategory = categoryManager.GetCategoryById(1);
             if (selectedCategory == null)
             {
                 throw new ArgumentException($"No category found with Id {1}");
             }
-            Venue selectedVenue = venueManager.GetById(1);
+            Venue selectedVenue = venueManager.GetVenueById(1);
             if (selectedVenue == null)
             {
                 throw new ArgumentException($"No venue found with Id {1}");
@@ -54,12 +54,12 @@ namespace Truextend.TicketDispenser.Core.Managers
             {
                 throw new Exception("A name is required");
             }
-            var selectedCategory = _categoryManager.GetById(categoryId);
+            var selectedCategory = _categoryManager.GetCategoryById(categoryId);
             if (selectedCategory == null)
             {
                 throw new ArgumentException($"No category found with Id {categoryId}");
             }
-            var selectedVenue = _venueManager.GetById(venueId);
+            var selectedVenue = _venueManager.GetVenueById(venueId);
             if (selectedVenue == null)
             {
                 throw new ArgumentException($"No venue found with Id {venueId}");
@@ -67,7 +67,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             _events.Add(eventToAdd);
             return eventToAdd;
         }
-        public EventShow UpdateEvent(int id, EventShow eventToUpdate)
+        public EventShow UpdateEventById(int id, EventShow eventToUpdate)
         {
             EventShow eventFound = _events.Find(ev => ev.Id == id);
             if (eventFound == null)
@@ -79,11 +79,20 @@ namespace Truextend.TicketDispenser.Core.Managers
             }
             return eventFound;
         }
-        public EventShow DeleteEvent(int id) 
+        public EventShow DeleteEventById(int id) 
         {
             EventShow eventFound = _events.Find(ev => ev.Id == id);
                 _events.Remove(eventFound);
                 return eventFound;
+        }
+        public EventShow GetEventById(int id)
+        {
+            EventShow selectedEvent = _events.Find(z => z.Id == id);
+            if (selectedEvent == null)
+            {
+                throw new Exception("Id Not Found");
+            }
+            return selectedEvent;
         }
     }
 }

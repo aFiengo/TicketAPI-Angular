@@ -33,14 +33,14 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         [Route("{Id}")]
         public IActionResult UpdateCategory([FromRoute] int Id, [FromBody] Category categoryToUpdate)
         {
-            return Ok(this._categoryManager.UpdateCategory(Id, categoryToUpdate));
+            return Ok(this._categoryManager.UpdateCategoryById(Id, categoryToUpdate));
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult DeleteCategory([FromRoute] int id)
         {
-            Category categoryToDelete = _categoryManager.DeleteCategory(id);
+            Category categoryToDelete = _categoryManager.DeleteCategoryById(id);
             return Ok(categoryToDelete);
         }
     }
