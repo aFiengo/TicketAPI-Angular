@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -19,6 +20,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             _eventManager = eventShowManager;
             _zoneManager = zoneManager;
             _userManager = userManager;
+            _ticketList= new List<Ticket>();
         }
         /*public Ticket GenerateTicket (EventShow eventShow, User user, Zone zone, int quantity)
         {
@@ -54,7 +56,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             public string UserName { get; set; }
             public string UserEmail { get; set; }
         }
-        public List<TicketSummary> GenerateTicket(TicketRequest ticketRequest)
+        public List<TicketSummary> GenerateTickets(TicketRequest ticketRequest)
         {
             var tickets = new List<TicketSummary>();
 
@@ -111,8 +113,13 @@ namespace Truextend.TicketDispenser.Core.Managers
                     UserName = ticket.UserInfo.FirstName + " " + ticket.UserInfo.LastName,
                     UserEmail = ticket.UserInfo.Email
                 });
+                _ticketList.Add(ticket);
             }
             return tickets;
+        }
+        public List<Ticket> GetAllTickets()
+        {
+            return _ticketList;
         }
     }
 

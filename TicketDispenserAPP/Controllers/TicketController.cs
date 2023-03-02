@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Core.Models;
+using static Truextend.TicketDispenser.Core.Managers.TicketManager;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {
@@ -14,25 +15,16 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         {
             _ticketManager = ticketManager;
         }
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok();
-        }
         [HttpPost]
-        public IActionResult Post()
+        public IActionResult GenerateTicket([FromBody] TicketRequest ticketRequest)
         {
-            return Ok();
+            var tickets = _ticketManager.GenerateTicket(ticketRequest);
+            return Ok(tickets);
         }
-        [HttpPut]
-        public IActionResult Put() 
+        [HttpGet]
+        public IActionResult GetAllTickets()
         {
-            return Ok();
-        }
-        [HttpDelete]
-        public IActionResult Delete() 
-        {
-            return Ok();
+            Ticket tickets = _ticketManager.GetAllTickets()
         }
     }
 }
