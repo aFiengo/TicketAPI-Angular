@@ -50,7 +50,7 @@ namespace Truextend.TicketDispenser.Data.Repository.Base
             return await dbContext.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(int id)
         {
             T value = await dbContext.Set<T>().FindAsync(id);
             return value;

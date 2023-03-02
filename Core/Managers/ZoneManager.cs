@@ -2,14 +2,18 @@
 using Truextend.TicketDispenser.Core.Models;
 using AutoMapper;
 using Truextend.TicketDispenser.Data.Models;
+using Truextend.Rewards.Data;
 
 namespace Truextend.TicketDispenser.Core.Managers;
 public class ZoneManager : IGenericManager<ZoneDTO>
 {
     private List<Zone> _zones;
+
+    private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
-    public ZoneManager(IMapper mapper)
+    public ZoneManager(IUnitOfWork unitOfWork, IMapper mapper)
     {
+        _uow = unitOfWork;
         _mapper = mapper;
         _zones = new List<Zone>()
             {
@@ -20,20 +24,19 @@ public class ZoneManager : IGenericManager<ZoneDTO>
                 new Zone() {Id = 5, Name = "Curva Sur", TicketPrice = 40, Capacity = 6400}
             };
     }
-    public List<ZoneDTO> GetAll()
+    public async Task<IEnumerable<ZoneDTO>> GetAll()
     {
-        return _mapper.Map<List<ZoneDTO>>(_zones);
+        IEnumerable<Zone> zones = await _uow.ZoneRepository.GetAllAsync();
+        return _mapper.Map<IEnumerable<ZoneDTO>>(zones);
     }
-    public ZoneDTO Update(int id, ZoneDTO zoneToUpdate)
+    public async Task<ZoneDTO> Update(int id, ZoneDTO zoneToUpdate)
     {
-        Zone zone = _zones.FirstOrDefault(z => z.Id == id);
-        if (zone != null)
-        {
-            zone.Name = zoneToUpdate.Name;
-            zone.TicketPrice = zoneToUpdate.TicketPrice == 0 ? zone.TicketPrice : zoneToUpdate.TicketPrice;
-
-        }
-        return _mapper.Map<ZoneDTO>(zone);
+        Zone zone = await _uow.ZoneRepository.GetByIdAsync(id);
+        _mapper.Map(zoneToUpdate, zone);
+        zone.Id = id;
+        Zone zoneResponse = await _uow.ZoneRepository.UpdateAsync(zone);
+        ZoneDTO editedZone = _mapper.Map<ZoneDTO>(zoneResponse);
+        return editedZone;
 
     }
     public bool Delete(int id)
@@ -45,17 +48,17 @@ public class ZoneManager : IGenericManager<ZoneDTO>
         return true;
     }
 
-    public ZoneDTO GetById(int id)
+    public async Task<ZoneDTO> GetById(int id)
     {
-        Zone selectedZone = _zones.Find(z => z.Id == id);
-        return _mapper.Map<ZoneDTO>(selectedZone);
+        Zone zone = await _uow.ZoneRepository.GetByIdAsync(id);
+        return _mapper.Map<ZoneDTO>(zone);
     }
 
-    public ZoneDTO Create(ZoneDTO item)
+    public async Task<ZoneDTO> Create(ZoneDTO item)
     {
         Zone zoneToAdd = _mapper.Map<Zone>(item);
-        _zones.Add(zoneToAdd);
-        return item;
+        Zone zoneResponse = await _uow.ZoneRepository.CreateAsync(zoneToAdd);
+        return _mapper.Map<ZoneDTO>(zoneResponse);
     }
 
 }

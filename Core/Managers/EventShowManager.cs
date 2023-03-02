@@ -5,7 +5,7 @@ using Truextend.TicketDispenser.Core.Models;
 using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.Core.Managers;
-public class EventShowManager : IEventShowManager
+public class EventShowManager
 {
     private List<EventShow> _events;
     private readonly ZoneManager _zoneManager;
@@ -48,9 +48,9 @@ public class EventShowManager : IEventShowManager
         return _events.Remove(eventShow);
     }
 
-    public List<EventShowDTO> GetAll()
+    public IEnumerable<EventShowDTO> GetAll()
     {
-        return _mapper.Map<List<EventShowDTO>>(_events);
+        return _mapper.Map<IEnumerable<EventShowDTO>>(_events);
     }
 
     public EventShowDTO GetById(int id)

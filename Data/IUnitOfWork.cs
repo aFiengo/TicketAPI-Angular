@@ -13,7 +13,7 @@ public interface IUnitOfWork
     // IUserTeamRepository UserTeamRepository { get; }
     // IUserRewardRepository UserRewardRepository { get; }
     // ILikeRepository LikeRepository { get; }
-    // ICommentRepository CommentRepository { get; }
+    IZoneRepository ZoneRepository { get; }
     void BeginTransaction();
     void CommitTransaction();
     void RollBackTransaction();

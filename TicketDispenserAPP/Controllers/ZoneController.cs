@@ -5,6 +5,8 @@ using Truextend.TicketDispenser.TicketDispenserAPI.Controllers.Base;
 using Truextend.TicketDispenser.Core.Models;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers;
+
+[Produces("application/json")]
 [Route("api/zone")]
 [ApiController]
 public class ZoneController : TicketBaseController<ZoneDTO>
