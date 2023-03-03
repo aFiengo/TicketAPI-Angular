@@ -30,7 +30,7 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{Id}")]
+        [Route("{id}")]
         public IActionResult UpdateCategory([FromRoute] int Id, [FromBody] Category categoryToUpdate)
         {
             return Ok(this._categoryManager.UpdateCategoryById(Id, categoryToUpdate));

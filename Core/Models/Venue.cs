@@ -14,13 +14,7 @@ namespace Truextend.TicketDispenser.Core.Models
         public string Country { get; set; }
         public int SeatedCapacity { get; set; }
         public int FieldCapacity { get; set; }
-        public int TotalCapacity
-        {
-            get 
-            {
-                return SeatedCapacity + FieldCapacity;
-            }
-        }
+        public int TotalCapacity => SeatedCapacity + FieldCapacity;
     }
 }
 

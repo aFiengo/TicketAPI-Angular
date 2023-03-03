@@ -16,15 +16,17 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             _ticketManager = ticketManager;
         }
         [HttpPost]
-        public IActionResult GenerateTicket([FromBody] TicketRequest ticketRequest)
+        [Route ("generate")]
+        public IActionResult GenerateTickets([FromBody] TicketRequest ticketRequest)
         {
-            var tickets = _ticketManager.GenerateTicket(ticketRequest);
+            var tickets = _ticketManager.GenerateTickets(ticketRequest);
             return Ok(tickets);
         }
         [HttpGet]
         public IActionResult GetAllTickets()
         {
-            Ticket tickets = _ticketManager.GetAllTickets()
+            var tickets = _ticketManager.GetAllTickets();
+            return Ok(tickets);
         }
     }
 }

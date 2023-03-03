@@ -34,7 +34,7 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             return Ok(eventToUpdate);
         }
         [HttpDelete]
-        [Route("{Id}")]
+        [Route("{id}")]
         public IActionResult DeleteEvent([FromRoute] int Id) 
         {
             EventShow deletedEvent = _eventManager.DeleteEventById(Id);

@@ -30,7 +30,7 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{Id}")]
+        [Route("{id}")]
         public IActionResult UpdateZone([FromRoute] int Id, [FromBody] Zone zoneToUpdate) 
         {
             return Ok(this._zoneManager.UpdateZoneById(Id, zoneToUpdate));

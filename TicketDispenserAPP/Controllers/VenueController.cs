@@ -32,7 +32,7 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{Id}")]
+        [Route("{id}")]
         public IActionResult UpdateVenue([FromRoute] int Id, [FromBody] Venue venueToUpdate)
         {
             return Ok(this._venueManager.UpdateVenueById(Id, venueToUpdate));

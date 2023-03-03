@@ -14,7 +14,7 @@ namespace Truextend.TicketDispenser.Core.Managers
         private CategoryManager _categoryManager;
         private VenueManager _venueManager;
         private ZoneManager _zoneManager;
-        public EventShowManager(CategoryManager categoryManager, int categoryId, VenueManager venueManager, int venueId, ZoneManager zoneManager, int zoneId) 
+        public EventShowManager(CategoryManager categoryManager, VenueManager venueManager, ZoneManager zoneManager) 
         {
             _categoryManager = categoryManager;
             _venueManager = venueManager;

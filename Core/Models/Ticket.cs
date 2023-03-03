@@ -10,7 +10,7 @@ namespace Truextend.TicketDispenser.Core.Models
     {
         public Guid Id { get; set; }
         public EventShow EventShowInfo { get; set; }
-        public Zone ZoneInfo { get; set; }
+        //public Zone ZoneInfo { get; set; }
         public int Quantity { get; set; }
         public User UserInfo { get; set; }
 

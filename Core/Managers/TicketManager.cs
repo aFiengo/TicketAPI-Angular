@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Truextend.TicketDispenser.Core.Models;
@@ -82,14 +83,18 @@ namespace Truextend.TicketDispenser.Core.Managers
                         {
                             Name = eventShow.Location.Name,
                             City = eventShow.Location.City,
-                            Country = eventShow.Location.Country
+                            Country = eventShow.Location.Country,
+                            SeatedCapacity = eventShow.Location.SeatedCapacity,
+                            FieldCapacity = eventShow.Location.FieldCapacity,
                         },
-                        Zones = new Zone
+                        Zones = new List<Zone>
                         {
-                            Id = zone.Id,
-                            Name = zone.Name,
-                            Capacity = zone.Capacity,
-                            TicketPrice = zone.TicketPrice
+                            new Zone
+                            {
+                                Id = zone.Id,
+                                Name = zone.Name,
+                                TicketPrice = zone.TicketPrice
+                            }
                         }
                     },
                     Quantity = 1,
@@ -97,9 +102,10 @@ namespace Truextend.TicketDispenser.Core.Managers
                     {
                         Id = user.Id,
                         FirstName = user.FirstName,
-                        LastName= user.LastName,
+                        LastName = user.LastName,
                         Email = user.Email
-                    }
+                    },
+                    //ZoneInfo = zone
                 };
                 tickets.Add(new TicketSummary
                 {
@@ -108,8 +114,8 @@ namespace Truextend.TicketDispenser.Core.Managers
                     LocationName = ticket.EventShowInfo.Location.Name,
                     LocationCity = ticket.EventShowInfo.Location.City,
                     LocationCountry = ticket.EventShowInfo.Location.Country,
-                    ZoneName = ticket.ZoneInfo.Name,
-                    ZoneTicketPrice = ticket.ZoneInfo.TicketPrice,
+                    //ZoneName = ticket.ZoneInfo.Name,
+                    //ZoneTicketPrice = ticket.ZoneInfo.TicketPrice,
                     UserName = ticket.UserInfo.FirstName + " " + ticket.UserInfo.LastName,
                     UserEmail = ticket.UserInfo.Email
                 });
