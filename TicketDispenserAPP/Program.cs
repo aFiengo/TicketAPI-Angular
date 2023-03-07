@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
 using Truextend.TicketDispenser.Core;
 using Truextend.TicketDispenser.Core.Managers;
+using Truextend.TicketDispenser.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<TicketDbContext>(options =>
+{
+    options.UseMySQL(builder.Configuration.GetConnectionString("TicketContextDb"));
+});
 builder.Services.AddSingleton<TicketManager>();
 builder.Services.AddSingleton<EventShowManager>();
 builder.Services.AddSingleton<CategoryManager>();
