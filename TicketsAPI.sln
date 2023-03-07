@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketDispenserAPI", "Ticke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{0BC2A893-AB10-4781-9B7A-0B8602306393}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketDbContext", "TicketDbContext\TicketDbContext.csproj", "{827C1B3D-E59E-4412-B348-03C12DA96D15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "TicketDbContext\Data.csproj", "{827C1B3D-E59E-4412-B348-03C12DA96D15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configuration\Configuration.csproj", "{A4A72609-33BD-4676-AFE2-4E7B7350BE2A}"
 EndProject
