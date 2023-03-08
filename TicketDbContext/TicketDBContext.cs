@@ -23,7 +23,7 @@ namespace Truextend.TicketDispenser.Core.Services
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_config["ConnectionStrings:TicketContextDb"]);
+            optionsBuilder.UseSqlServer(_config["ConnectionStrings:TicketConnection"]);
         }
     }
 }
