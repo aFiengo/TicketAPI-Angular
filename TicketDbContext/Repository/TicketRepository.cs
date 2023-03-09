@@ -18,4 +18,5 @@ namespace Truextend.TicketDispenser.Data.Repository
             IEnumerable<Ticket> tickets = await GetAllAsync(t => t.Id == id);
             return tickets;
         }
+    }
 }

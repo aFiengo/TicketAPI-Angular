@@ -70,10 +70,37 @@ namespace Truextend.TicketDispenser.Data
                 throw new DatabaseException("Can not save changes, error in Database", ex.InnerException);
             }
         }
+        public ICategoryRepository CategoryRepository
+        {
+            get { return _category; }
+        }
+        public IEventRepository EventRepository
+        { 
+            get { return _event; }
+        }
+        public IEventZoneRepository EventZoneRepository 
+        {
+            get { return _eventZone; }
+        }
+        public ITicketRepository TicketRepository 
+        { 
+            get { return _ticket; }
+        }
         public IUserRepository UserRepository
         {
             get { return _user; }
         }
+        public IVenueRepository VenueRepository 
+        {
+            get { return _venue; }
+        }
+        public IZoneRepository ZoneRepository 
+        {
+            get { return _zone; }
+        }
+        public IZoneVenueRepository ZoneVenueRepository 
+        {
+            get { return _zoneVenue; }
+        }
     }
-
 }

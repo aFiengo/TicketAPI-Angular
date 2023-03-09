@@ -10,7 +10,7 @@ namespace Truextend.TicketDispenser.Data
 {
     public interface IUnitOfWork
     {
-        ITIcketRepository TicketRepository { get; }
+        ITicketRepository TicketRepository { get; }
         ICategoryRepository CategoryRepository { get; }
         IUserRepository UserRepository { get; }
         IZoneRepository ZoneRepository { get; }
