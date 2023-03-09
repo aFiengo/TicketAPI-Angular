@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.Core.Managers
 {

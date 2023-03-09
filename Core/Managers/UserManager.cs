@@ -4,28 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.Data.Models;
+using Truextend.TicketDispenser.Data;
+using Truextend.TicketDispenser.Core.Managers.Base;
 
 namespace Truextend.TicketDispenser.Core.Managers
 {
-    public class UserManager
+    public class UserManager : IGenericManager<User>
     {
-        private List<User> _users;
-        public UserManager() 
+        private readonly IUnitOfWork _uow;
+
+        public UserManager(IUnitOfWork uow) 
         {
-            _users = new List<User>()
-            {
-                //new User() { Id = 1, FirstName = "Ariel", LastName = "Fiengo", Birthday = new DateTime(1991,12,22,0,0,0), Email = "ariel.fiengo@gmail.com", CellphoneNumber = 72744409, City = "Cochabamba", Country = "Bolivia"},
-                //new User() { Id = 2, FirstName = "Mauricio", LastName = "Terceros", Birthday = new DateTime(1987,02,7,0,0,0), Email = "mauricio.terceros@gmail.com", CellphoneNumber = 75480016, City = "Cochabamba", Country = "Bolivia"},
-                //new User() { Id = 3, FirstName = "Diego", LastName = "Fiengo", Birthday = new DateTime(1993,10,11,0,0,0), Email = "fiengo.arnez.diego@gmail.com", CellphoneNumber = 71744004, City = "Cochabamba", Country = "Bolivia"},
-                //new User() { Id = 4, FirstName = "David", LastName = "Carvajal", Birthday = new DateTime(1981,12,16,0,0,0), Email = "d.carvajal@gmail.com", CellphoneNumber = 70726199, City = "Cochabamba", Country = "Bolivia"},
-            };
+            _uow = uow;
+            
         }
-        public List<User> GetUsers() 
+        public async Task<IEnumerable<User>> GetAll() 
         {
-            return _users;
+            return await _uow.UserRepository.GetAllAsync();
         }
-        public User AddUser(User userToAdd)
+        public async Task<User> GetById(int id)
+        {
+            return await _uow.UserRepository.GetUserById(id);
+        }
+        public async Task<User> Create(User userToAdd)
         {
             if (String.IsNullOrEmpty(userToAdd.FirstName))
             {
@@ -39,12 +41,11 @@ namespace Truextend.TicketDispenser.Core.Managers
             {
                 throw new Exception("An e-mail is required");
             }
-            _users.Add(userToAdd);
-            return userToAdd;
+            return await _uow.UserRepository.CreateAsync(userToAdd);
         }
-        public User UpdateUserById(int id, User userToUpdate)
+        public async Task<User> Update(int id, User userToUpdate)
         {
-            User userFound = _users.FirstOrDefault(u => u.Id == id);
+            User userFound = await _uow.UserRepository.GetByIdAsync(id);
             if (userFound != null)
             {
                 userFound.FirstName = userToUpdate.FirstName;
@@ -55,22 +56,14 @@ namespace Truextend.TicketDispenser.Core.Managers
                 userFound.City = userToUpdate.City;
                 userFound.Country = userToUpdate.Country;
             }
-            return userToUpdate;
+            return await _uow.UserRepository.UpdateAsync(userToUpdate);
         }
-        public User DeleteUserById(int id) 
+        public async Task<bool> Delete(int id) 
         {
-            User userToDelete = _users.Find(u =>u.Id == id);
-            _users.Remove(userToDelete);
-            return userToDelete;
-        }
-        public User GetUserById(int id)
-        {
-            User selectedUser = _users.Find(z => z.Id == id);
-            if (selectedUser == null)
-            {
-                throw new Exception("Id Not Found");
-            }
-            return selectedUser;
+            User userFound = await _uow.UserRepository.GetByIdAsync(id);
+            await _uow.UserRepository.DeleteAsync(userFound);
+            return await _uow.UserRepository.GetByIdAsync(id) == null;
+
         }
     }
 }

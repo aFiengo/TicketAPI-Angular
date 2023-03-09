@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Truextend.TicketDispenser.Core;
 using Truextend.TicketDispenser.Core.Managers;
-using Truextend.TicketDispenser.Core.Services;
+using Truextend.TicketDispenser.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +15,9 @@ builder.Services.AddSingleton<EventShowManager>();
 builder.Services.AddSingleton<CategoryManager>();
 builder.Services.AddSingleton<VenueManager>();
 builder.Services.AddSingleton<ZoneManager>();
-builder.Services.AddSingleton<UserManager>();
+builder.Services.AddTransient<UserManager>();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

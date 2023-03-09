@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
-using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {
@@ -15,29 +15,29 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             _userManager = userManager;
         }
         [HttpGet]
-        public IActionResult GetUsers() 
+        public async Task<ActionResult> GetUsers() 
         {
-            List<User> users = _userManager.GetUsers();
+            IEnumerable<User> users = await _userManager.GetAll();
             return Ok(users);
         }
         [HttpPost]
-        public IActionResult CreateUser(User userToAdd)
+        public async Task<ActionResult> CreateUser(User userToAdd)
         {
-            this._userManager.AddUser(userToAdd);
-            return Ok(userToAdd);
+            User createdUser = await _userManager.Create(userToAdd);
+            return Ok(createdUser);
         }
         [HttpPut]
         [Route ("{id}")]
-        public IActionResult UpdateUser([FromRoute] int id, [FromBody] User selectedUser) 
+        public async Task<ActionResult> UpdateUser([FromRoute] int id, [FromBody] User selectedUser) 
         {
-            User userToUpdate = _userManager.UpdateUserById(id, selectedUser);
+            User userToUpdate = await _userManager.Update(id, selectedUser);
             return Ok(userToUpdate);
         }
         [HttpDelete]
         [Route ("{id}")]
-        public IActionResult DeleteUser([FromRoute] int id) 
+        public async Task<ActionResult> DeleteUser([FromRoute] int id) 
         {
-            User userToDelete = _userManager.DeleteUserById(id);
+            bool userToDelete = await _userManager.Delete(id);
             return Ok(userToDelete);
         }
     }

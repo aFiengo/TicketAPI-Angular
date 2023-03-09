@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
-using Truextend.TicketDispenser.Core.Models;
+using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {

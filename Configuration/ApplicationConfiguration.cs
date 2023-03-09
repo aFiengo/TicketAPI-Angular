@@ -19,7 +19,7 @@ namespace Truextend.TicketDispenser.Configuration.Models
         {
             return new DatabaseConnectionStrings()
             {
-                DATABASE = _configuration.GetSection("ConnectionStrings").GetSection("RewardsConnection").Value
+                DATABASE = _configuration.GetSection("ConnectionStrings").GetSection("TicketConnection").Value
             };
         }
     }
