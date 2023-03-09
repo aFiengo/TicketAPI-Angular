@@ -15,10 +15,10 @@ namespace Truextend.TicketDispenser.Core.Managers
         {
             _users = new List<User>()
             {
-                new User() { Id = 1, FirstName = "Ariel", LastName = "Fiengo", Birthday = new DateTime(1991,12,22,0,0,0), Email = "ariel.fiengo@gmail.com", CellphoneNumber = 72744409, City = "Cochabamba", Country = "Bolivia"},
-                new User() { Id = 2, FirstName = "Mauricio", LastName = "Terceros", Birthday = new DateTime(1987,02,7,0,0,0), Email = "mauricio.terceros@gmail.com", CellphoneNumber = 75480016, City = "Cochabamba", Country = "Bolivia"},
-                new User() { Id = 3, FirstName = "Diego", LastName = "Fiengo", Birthday = new DateTime(1993,10,11,0,0,0), Email = "fiengo.arnez.diego@gmail.com", CellphoneNumber = 71744004, City = "Cochabamba", Country = "Bolivia"},
-                new User() { Id = 4, FirstName = "David", LastName = "Carvajal", Birthday = new DateTime(1981,12,16,0,0,0), Email = "d.carvajal@gmail.com", CellphoneNumber = 70726199, City = "Cochabamba", Country = "Bolivia"},
+                //new User() { Id = 1, FirstName = "Ariel", LastName = "Fiengo", Birthday = new DateTime(1991,12,22,0,0,0), Email = "ariel.fiengo@gmail.com", CellphoneNumber = 72744409, City = "Cochabamba", Country = "Bolivia"},
+                //new User() { Id = 2, FirstName = "Mauricio", LastName = "Terceros", Birthday = new DateTime(1987,02,7,0,0,0), Email = "mauricio.terceros@gmail.com", CellphoneNumber = 75480016, City = "Cochabamba", Country = "Bolivia"},
+                //new User() { Id = 3, FirstName = "Diego", LastName = "Fiengo", Birthday = new DateTime(1993,10,11,0,0,0), Email = "fiengo.arnez.diego@gmail.com", CellphoneNumber = 71744004, City = "Cochabamba", Country = "Bolivia"},
+                //new User() { Id = 4, FirstName = "David", LastName = "Carvajal", Birthday = new DateTime(1981,12,16,0,0,0), Email = "d.carvajal@gmail.com", CellphoneNumber = 70726199, City = "Cochabamba", Country = "Bolivia"},
             };
         }
         public List<User> GetUsers() 

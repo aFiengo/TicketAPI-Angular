@@ -8,8 +8,8 @@ using Truextend.TicketDispenser.Data.Repository.Base;
 
 namespace Truextend.TicketDispenser.Data.Repository.Interfaces
 {
-    public interface ITIcketRepository : IRepository<Ticket>
+    public interface ITicketRepository : IRepository<Ticket>
     {
-        Task<IEnumerable<User>> GetTicketById(Guid id);
+        Task<IEnumerable<Ticket>> GetTicketsById(Guid id);
     }
 }

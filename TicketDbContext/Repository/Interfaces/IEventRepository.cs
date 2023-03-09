@@ -10,6 +10,6 @@ namespace Truextend.TicketDispenser.Data.Repository.Interfaces
 {
     public interface IEventRepository : IRepository<EventShow>
     {
-        Task<IEnumerable<EventShow>> GetEventById(int id);
+        Task<EventShow> GetEventById(int id);
     }
 }
