@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Data.Models;
@@ -16,31 +17,36 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             _categoryManager = categoryManager;
         }
         [HttpGet]
-        public IActionResult GetCategories()
+        public async Task<ActionResult> GetCategories()
         {
-            List<Category> categorys = _categoryManager.GetCategories();
-            return Ok(categorys);
+            IEnumerable<Category> categories = await _categoryManager.GetAll();
+            return Ok(categories);
         }
-
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetCategoryById(int id)
+        {
+            Category category = await _categoryManager.GetById(id);
+            return Ok(category);
+        }
         [HttpPost]
-        public IActionResult CreateCategory([FromBody] Category categoryToAdd)
+        public async Task<ActionResult> CreateCategory(Category categoryToAdd)
         {
-            this._categoryManager.AddCategory(categoryToAdd);
-            return Ok(categoryToAdd);
+            Category createdCategory = await _categoryManager.Create(categoryToAdd);
+            return Ok(createdCategory);
         }
-
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateCategory([FromRoute] int Id, [FromBody] Category categoryToUpdate)
+        public async Task<ActionResult> UpdateCategory([FromRoute] int id, [FromBody] Category selectedCategory)
         {
-            return Ok(this._categoryManager.UpdateCategoryById(Id, categoryToUpdate));
+            Category categoryToUpdate = await _categoryManager.Update(id, selectedCategory);
+            return Ok(categoryToUpdate);
         }
-
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteCategory([FromRoute] int id)
+        public async Task<ActionResult> DeleteCategory([FromRoute] int id)
         {
-            Category categoryToDelete = _categoryManager.DeleteCategoryById(id);
+            bool categoryToDelete = await _categoryManager.Delete(id);
             return Ok(categoryToDelete);
         }
     }

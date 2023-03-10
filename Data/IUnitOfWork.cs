@@ -13,6 +13,7 @@ namespace Truextend.TicketDispenser.Data
         ICategoryRepository CategoryRepository { get; }
         IUserRepository UserRepository { get; }
         IZoneRepository ZoneRepository { get; }
+        IZoneVenueRepository ZoneVenueRepository { get; }
         IVenueRepository VenueRepository { get; }
         IEventRepository EventRepository { get; }
         IEventZoneRepository EventZoneRepository { get; }

@@ -10,11 +10,11 @@ builder.Services.AddDbContext<TicketDbContext>(options =>
 {
     options.UseMySQL(builder.Configuration.GetConnectionString("TicketContextDb"));
 });
-builder.Services.AddSingleton<TicketManager>();
-builder.Services.AddSingleton<EventShowManager>();
-builder.Services.AddSingleton<CategoryManager>();
+builder.Services.AddTransient<TicketManager>();
+builder.Services.AddTransient<EventShowManager>();
+builder.Services.AddTransient<CategoryManager>();
 builder.Services.AddTransient<VenueManager>();
-builder.Services.AddSingleton<ZoneManager>();
+builder.Services.AddTransient<ZoneManager>();
 builder.Services.AddTransient<UserManager>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

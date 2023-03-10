@@ -12,10 +12,10 @@ namespace Truextend.TicketDispenser.Data.Repository
     public class ZoneVenueRepository : Repository<ZoneVenue>, IZoneVenueRepository
     {
         public ZoneVenueRepository(TicketDbContext ticketDbContext) : base(ticketDbContext) { }
-        public async Task<IEnumerable<ZoneVenue>> GetZonesByVenueId(int venueId)
+        public async Task<ZoneVenue> GetZoneByVenueId(int venueId)
         {
-            IEnumerable<ZoneVenue> zones = await GetAllAsync(z => z.VenueId == venueId);
-            return zones;
+            IEnumerable<ZoneVenue> zone = await GetAllAsync(z => z.VenueId == venueId);
+            return zone.Any() ? zone.First() : null;
         }
     }
 }

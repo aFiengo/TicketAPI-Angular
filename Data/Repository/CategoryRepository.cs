@@ -7,10 +7,10 @@ namespace Truextend.TicketDispenser.Data.Repository
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         public CategoryRepository(TicketDbContext ticketDbContext) : base(ticketDbContext) { }
-        public async Task<IEnumerable<Category>> GetCategoryById(int id)
+        public async Task<Category> GetCategoryById(int id)
         {
-            IEnumerable<Category> categories = await GetAllAsync(z => z.Id == id);
-            return categories;
+            IEnumerable<Category> categories = await GetAllAsync(c => c.Id == id);
+            return categories.Any() ? categories.First() : null;
         }
     }
 }

@@ -4,59 +4,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Truextend.TicketDispenser.Core.Managers.Base;
+using Truextend.TicketDispenser.Data;
 using Truextend.TicketDispenser.Data.Models;
 
 namespace Truextend.TicketDispenser.Core.Managers
 {
-    public class CategoryManager
+    public class CategoryManager : IGenericManager<Category>
     {
-        private List<Category> _categories;
-        
-        public CategoryManager() 
+        private readonly IUnitOfWork _uow;
+
+        public CategoryManager(IUnitOfWork uow) 
         {
-            _categories = new List<Category>()
-            {
-                new Category(){ Id = 1, Name = "Music"},
-                new Category(){ Id = 2, Name = "Sport"}
-            };
+            _uow = uow;
         }
-        public List<Category> GetCategories()
+        public async Task<IEnumerable<Category>> GetAll()
         {
-            return _categories;
+            return await _uow.CategoryRepository.GetAllAsync();
         }
-        public Category AddCategory(Category categoryToAdd)
+        public async Task<Category> GetById(int id)
+        {
+            return await _uow.CategoryRepository.GetCategoryById(id);
+        }
+        public async Task<Category> Create(Category categoryToAdd)
         {
             if (String.IsNullOrEmpty(categoryToAdd.Name))
             {
                 throw new Exception("A name is required");
             }
-            _categories.Add(categoryToAdd);
-            return categoryToAdd;
+            return await _uow.CategoryRepository.CreateAsync(categoryToAdd);
         }
-        public Category UpdateCategoryById(int id, Category categoryToUpdate)
+        public async Task<Category> Update(int id, Category categoryToUpdate)
         {
-            Category category = _categories.FirstOrDefault(z => z.Id == id);
-            if (category != null)
+            Category categoryFound = await _uow.CategoryRepository.GetByIdAsync(id);
+            if (categoryFound != null)
             {
-                category.Name = categoryToUpdate.Name;
+                categoryFound.Name = categoryToUpdate.Name;
             }
-            return categoryToUpdate;
+            return await _uow.CategoryRepository.UpdateAsync(categoryToUpdate);
+        }
+        public async Task<bool> Delete(int id)
+        {
+            Category caegoryFound = await _uow.CategoryRepository.GetByIdAsync(id);
+            await _uow.CategoryRepository.DeleteAsync(caegoryFound);
+            return await _uow.CategoryRepository.GetByIdAsync(id) == null;
 
-        }
-        public Category DeleteCategoryById(int id)
-        {
-            Category categoryFound = _categories.Find(z => z.Id == id);
-            _categories.Remove(categoryFound);
-            return categoryFound;
-        }
-        public Category GetCategoryById(int id)
-        {
-            Category selectedCategory = _categories.Find(z => z.Id == id);
-            if (selectedCategory == null)
-            {
-                throw new Exception("Id Not Found");
-            }
-            return selectedCategory;
         }
     }
 }

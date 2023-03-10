@@ -10,6 +10,6 @@ namespace Truextend.TicketDispenser.Data.Repository.Interfaces
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task<IEnumerable<Category>> GetCategoryById(int id);
+        Task<Category> GetCategoryById(int id);
     }
 }

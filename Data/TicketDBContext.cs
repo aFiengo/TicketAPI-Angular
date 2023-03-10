@@ -18,6 +18,7 @@ namespace Truextend.TicketDispenser.Data
         public DbSet<EventShow> EventShow { get; set; }
         public DbSet<Venue> Venue { get; set; }
         public DbSet<Zone> Zone { get; set; }
+        public DbSet<ZoneVenue> ZoneVenue { get; set; }
         public DbSet<User> User { get; set; }
 
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -14,6 +14,10 @@ namespace Truextend.TicketDispenser.Data.Repository
     public class ZoneRepository : Repository<Zone>, IZoneRepository
     {
         public ZoneRepository(TicketDbContext ticketDbContext) : base(ticketDbContext) { }
-        
+        public async Task<Zone> GetZoneById(int venueId)
+        {
+            IEnumerable<Zone> zone = await GetAllAsync(z => z.Id == venueId);
+            return zone.Any() ? zone.First() : null;
+        }
     }
 }

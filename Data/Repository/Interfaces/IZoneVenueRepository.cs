@@ -10,6 +10,6 @@ namespace Truextend.TicketDispenser.Data.Repository.Interfaces
 {
     public interface IZoneVenueRepository : IRepository<ZoneVenue>
     {
-        Task<IEnumerable<ZoneVenue>> GetZonesByVenueId(int venueId);
+        Task<ZoneVenue> GetZoneByVenueId(int venueId);
     }
 }
