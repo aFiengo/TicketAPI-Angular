@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Truextend.TicketDispenser.Core.Managers;
@@ -18,32 +19,39 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetVenues()
+        public async Task<ActionResult> GetVenues()
         {
-            List<Venue> venues = _venueManager.GetVenues();
+            IEnumerable<Venue> venues = await _venueManager.GetAll();
             return Ok(venues);
         }
-
-        [HttpPost]
-        public IActionResult CreateVenue([FromBody] Venue venueToAdd)
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetVenueById(int id)
         {
-            this._venueManager.AddVenue(venueToAdd);
-            return Ok(venueToAdd);
+            Venue venue = await _venueManager.GetById(id);
+            return Ok(venue);
         }
-
+        [HttpPost]
+        public async Task<ActionResult> CreateVenue(Venue venueToAdd)
+        {
+            Venue createdVenue = await _venueManager.Create(venueToAdd);
+            return Ok(createdVenue);
+        }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateVenue([FromRoute] int Id, [FromBody] Venue venueToUpdate)
+        public async Task<ActionResult> UpdateVenue([FromRoute] int id, [FromBody] Venue selectedVenue)
         {
-            return Ok(this._venueManager.UpdateVenueById(Id, venueToUpdate));
+            Venue venueToUpdate = await _venueManager.Update(id, selectedVenue);
+            return Ok(venueToUpdate);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteVenue([FromRoute] int id)
+        public async Task<ActionResult> DeleteVenue([FromRoute] int id)
         {
-            Venue venueToDelete = _venueManager.DeleteVenueById(id);
+            bool venueToDelete = await _venueManager.Delete(id);
             return Ok(venueToDelete);
         }
     }
+    
 }

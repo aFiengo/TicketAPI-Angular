@@ -7,7 +7,7 @@ using Truextend.TicketDispenser.Data.Models;
 using Truextend.TicketDispenser.Data.Repository.Interfaces;
 using Truextend.TicketDispenser.Data.Repository.Base;
 using Truextend.TicketDispenser.Data;
-using Truextend.TicketDispenser.Data.Repository.Interfaces;
+
 
 namespace Truextend.TicketDispenser.Data.Repository
 {

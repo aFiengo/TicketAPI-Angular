@@ -14,10 +14,10 @@ namespace Truextend.TicketDispenser.Data
         {
             _config = config;
         }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<EventShow> EventShows { get; set; }
-        public DbSet<Venue> Locations { get; set; }
-        public DbSet<Zone> Zones { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<EventShow> EventShow { get; set; }
+        public DbSet<Venue> Venue { get; set; }
+        public DbSet<Zone> Zone { get; set; }
         public DbSet<User> User { get; set; }
 
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -13,7 +13,7 @@ builder.Services.AddDbContext<TicketDbContext>(options =>
 builder.Services.AddSingleton<TicketManager>();
 builder.Services.AddSingleton<EventShowManager>();
 builder.Services.AddSingleton<CategoryManager>();
-builder.Services.AddSingleton<VenueManager>();
+builder.Services.AddTransient<VenueManager>();
 builder.Services.AddSingleton<ZoneManager>();
 builder.Services.AddTransient<UserManager>();
 

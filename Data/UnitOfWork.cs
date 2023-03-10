@@ -27,6 +27,9 @@ namespace Truextend.TicketDispenser.Data
         {
             _ticketDBContext = dbContext;
             _user = new UserRepository(_ticketDBContext);
+            _venue = new VenueRepository(_ticketDBContext);
+            _category = new CategoryRepository(_ticketDBContext);
+            _event = new EventRepository(_ticketDBContext);
         }
         public void BeginTransaction()
         {

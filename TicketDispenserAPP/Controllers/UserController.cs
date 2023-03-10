@@ -20,6 +20,13 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
             IEnumerable<User> users = await _userManager.GetAll();
             return Ok(users);
         }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetUserById(int id)
+        {
+            User user = await _userManager.GetById(id);
+            return Ok(user);
+        }
         [HttpPost]
         public async Task<ActionResult> CreateUser(User userToAdd)
         {

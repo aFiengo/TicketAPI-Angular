@@ -46,7 +46,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             
             return await _uow.VenueRepository.CreateAsync(venueToAdd);
         }
-        public async Task<Venue> Uptade(int id, Venue venueToUpdate)
+        public async Task<Venue> Update(int id, Venue venueToUpdate)
         {
             Venue venue = await _uow.VenueRepository.GetByIdAsync(id);
             if (venue != null)
