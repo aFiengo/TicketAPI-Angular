@@ -22,7 +22,16 @@ namespace Truextend.TicketDispenser.Core.Managers
 
         public async Task<IEnumerable<Zone>> GetAll()
         {
-            return await _uow.ZoneRepository.GetAllAsync();
+            try
+            {
+                IEnumerable<Zone> zones = await _uow.ZoneRepository.GetAllAsync();
+                return await _uow.ZoneRepository.GetAllAsync();
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            
         }
 
         public async Task<Zone> GetById(int id)

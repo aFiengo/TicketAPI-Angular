@@ -11,7 +11,7 @@ namespace Truextend.TicketDispenser.Data.Models
     {
         public string Name { get; set; }
         public float CapPorcentage { get; set; }
-        public int Capacity (Venue venue) => (int)(venue.TotalCapacity * CapPorcentage);
+        public int Capacity { get; set; }//(Venue venue) => (int)(venue.TotalCapacity * CapPorcentage);
         public double TicketPrice { get; set; }
     }
 }
