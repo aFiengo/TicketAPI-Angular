@@ -16,7 +16,12 @@ namespace Truextend.TicketDispenser.Data.Repository
 
         public async Task<IEnumerable<EventShow>> GetAllEvents()
         {
-            return await GetAllAsync();
+            return await dbContext.EventShow
+            .Include(e => e.Category)
+            .Include(e => e.Venue)
+            .Include(e => e.EventZones)
+                .ThenInclude(ez => ez.Zone)
+            .ToListAsync();
         }
         public async Task<EventShow> GetEventById(int id)
         {

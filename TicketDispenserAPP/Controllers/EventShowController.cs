@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Data.Models;
 
