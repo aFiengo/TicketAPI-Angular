@@ -58,7 +58,7 @@ namespace Truextend.TicketDispenser.Core.Managers
             {
                 zone.Name = zoneToUpdate.Name;
                 zone.TicketPrice = zoneToUpdate.TicketPrice;
-                zone.CapPorcentage = zoneToUpdate.CapPorcentage;
+                zone.CapPercentage = zoneToUpdate.CapPercentage;
             }
             return await _uow.ZoneRepository.UpdateAsync(zoneToUpdate);
 

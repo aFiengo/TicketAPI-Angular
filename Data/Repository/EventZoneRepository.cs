@@ -14,7 +14,7 @@ namespace Truextend.TicketDispenser.Data.Repository
         public EventZoneRepository(TicketDbContext ticketDbContext) : base(ticketDbContext) { }
         public async Task<IEnumerable<EventZone>> GetZonesByEventId(int eventId)
         {
-            IEnumerable<EventZone> zones = await GetAllAsync(z => z.EventId == eventId);
+            IEnumerable<EventZone> zones = await GetAllAsync(z => z.Event.Id == eventId);
             return zones;
         }
     }

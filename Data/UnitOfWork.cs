@@ -26,6 +26,7 @@ namespace Truextend.TicketDispenser.Data
         public UnitOfWork(TicketDbContext dbContext)
         {
             _ticketDBContext = dbContext;
+            _ticket = new TicketRepository(_ticketDBContext);
             _user = new UserRepository(_ticketDBContext);
             _venue = new VenueRepository(_ticketDBContext);
             _category = new CategoryRepository(_ticketDBContext);

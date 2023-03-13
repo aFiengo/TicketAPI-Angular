@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,19 @@ namespace Truextend.TicketDispenser.Data.Repository
     public class EventRepository : Repository<EventShow>, IEventRepository
     {
         public EventRepository(TicketDbContext ticketDbContext) : base(ticketDbContext) { }
+
+        public async Task<IEnumerable<EventShow>> GetAllEvents()
+        {
+            return await GetAllAsync();
+        }
         public async Task<EventShow> GetEventById(int id)
         {
-            IEnumerable<EventShow> eventShow = await GetAllAsync(u => u.Id == id);
-            return eventShow.Any() ? eventShow.First() : null;
+            return await dbContext.EventShow
+            .Include(e => e.Category)
+            .Include(e => e.Venue)
+            .Include(e => e.EventZones)
+                .ThenInclude(ez => ez.Zone)
+            .FirstOrDefaultAsync(e => e.Id == id);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Truextend.TicketDispenser.Data.Models
         public Category Category { get; set; }
         public string Name { get; set; }
         public DateTime EventDate { get; set; }
-        public Venue Location { get; set; }
-        public List<Zone> Zones { get; set; }
+        public Venue Venue { get; set; }
+        public List<EventZone> EventZones { get; set; }
     }
 }
