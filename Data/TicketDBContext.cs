@@ -30,6 +30,15 @@ namespace Truextend.TicketDispenser.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<EventShow>()
+                .HasOne(c => c.Category)
+                .WithMany(es =>es.EventShows)
+                .HasForeignKey(e => e.CategoryId);
+
+            modelBuilder.Entity<Venue>()
+                .HasMany(v => v.EventShows)
+                .WithOne(es => es.Venue);
+
             modelBuilder.Entity<User>()
                 .HasMany(t => t.Tickets)
                 .WithOne(u => u.User);

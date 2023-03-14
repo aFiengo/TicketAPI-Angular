@@ -10,23 +10,23 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
     [ApiController]
     public class TicketController : ControllerBase
     {
-        //private readonly TicketManager _ticketManager;
-        //public TicketController(TicketManager ticketManager)
-        //{
-        //    _ticketManager = ticketManager;
-        //}
-        //[HttpPost]
-        //[Route ("generate")]
-        //public IActionResult GenerateTickets([FromBody] TicketRequest ticketRequest)
-        //{
-        //    var tickets = _ticketManager.GenerateTickets(ticketRequest);
-        //    return Ok(tickets);
-        //}
-        //[HttpGet]
-        //public IActionResult GetAllTickets()
-        //{
-        //    var tickets = _ticketManager.GetAllTickets();
-        //    return Ok(tickets);
-        //}
+        private readonly TicketManager _ticketManager;
+        public TicketController(TicketManager ticketManager)
+        {
+            _ticketManager = ticketManager;
+        }
+        [HttpPost]
+        [Route("generate")]
+        public async Task<IActionResult> GenerateTickets([FromBody] TicketRequest ticketRequest)
+        {
+            IEnumerable<Ticket> tickets = await _ticketManager.Create(ticketRequest);
+            return Ok(tickets);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllTickets()
+        {
+            IEnumerable<Ticket> tickets = await _ticketManager.GetAll();
+            return Ok(tickets);
+        }
     }
 }

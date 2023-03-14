@@ -11,9 +11,11 @@ namespace Truextend.TicketDispenser.Data.Models
 {
     public class EventShow : Entity
     {
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string Name { get; set; }
         public DateTime EventDate { get; set; }
+        public int VenueId { get; set; }
         public Venue Venue { get; set; }
         public List<EventZone> EventZones { get; set; }
         public List<Ticket> Tickets { get; set; }

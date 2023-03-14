@@ -31,9 +31,9 @@ namespace Truextend.TicketDispenser.Core.Managers
             public int Quantity { get; set; }
             public int UserId { get; set; }
         }
-        public async Task<Ticket>Create(TicketRequest ticketRequest)
+        public async Task<IEnumerable<Ticket>>Create(TicketRequest ticketRequest)
         {
-            return await _uow.TicketRepository.CreateTicketAsync(ticketRequest.EventId, ticketRequest.Quantity, ticketRequest.UserId);
+            return await _uow.TicketRepository.CreateTicketAsync(ticketRequest.EventId, ticketRequest.ZoneId, ticketRequest.Quantity, ticketRequest.UserId);
         }
         public async Task<IEnumerable<Ticket>> GetAll()
         {

@@ -10,5 +10,6 @@ namespace Truextend.TicketDispenser.Data.Models
     public class Category : Entity
     {
         public string Name { get; set; }
+        public List<EventShow> EventShows { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Truextend.TicketDispenser.Data.Models
         public int SeatedCapacity { get; set; }
         public int FieldCapacity { get; set; }
         public int TotalCapacity => SeatedCapacity + FieldCapacity;
+        public List<EventShow> EventShows { get; set; }
     }
 }
 
