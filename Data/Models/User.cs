@@ -16,6 +16,7 @@ namespace Truextend.TicketDispenser.Data.Models
         public int CellphoneNumber { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public List<Ticket> Tickets { get; set; }
 
     }
 }

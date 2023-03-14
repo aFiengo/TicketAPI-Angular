@@ -11,12 +11,13 @@ builder.Services.AddDbContext<TicketDbContext>(options =>
 {
     options.UseMySQL(builder.Configuration.GetConnectionString("TicketContextDb"));
 });
-builder.Services.AddTransient<TicketManager>();
+
 builder.Services.AddTransient<EventShowManager>();
 builder.Services.AddTransient<CategoryManager>();
 builder.Services.AddTransient<VenueManager>();
 builder.Services.AddTransient<ZoneManager>();
 builder.Services.AddTransient<UserManager>();
+builder.Services.AddTransient<TicketManager>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers().AddNewtonsoftJson(options =>

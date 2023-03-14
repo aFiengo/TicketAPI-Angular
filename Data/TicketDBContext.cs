@@ -14,7 +14,7 @@ namespace Truextend.TicketDispenser.Data
         {
             _config = config;
         }
-        //public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<EventShow> EventShow { get; set; }
         public DbSet<EventZone> EventZone { get; set; }
@@ -30,6 +30,14 @@ namespace Truextend.TicketDispenser.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasMany(t => t.Tickets)
+                .WithOne(u => u.User);
+
+            modelBuilder.Entity<EventShow>()
+                .HasMany(t => t.Tickets)
+                .WithOne(es => es.EventShow);
+
             modelBuilder.Entity<EventZone>()
                 .HasKey(ez => new { ez.EventId, ez.ZoneId });
 
