@@ -24,16 +24,12 @@ namespace Truextend.TicketDispenser.Data.Repository
             List<Ticket> tickets = new List<Ticket>();
             EventShow eventShow = dbContext.EventShow
                                             .Include(e => e.Category)
+                                            .Include(e => e.Venue) 
+                                            .Include(e => e.EventZones).ThenInclude(ez => ez.Zone) 
                                             .Where(e => e.Id == eventId).FirstOrDefault();
 
 
-            //var eventShow = dbContext.EventShow.Include(e => e.EventZones)
-            //                                        .ThenInclude(ez => ez.Zone)
-            //                                        .SingleOrDefault(e => e.Id == eventId)
-            //                                        ?.EventZones.Select(ez => ez.Zone);
             Zone zone = await this.dbContext.Zone.FindAsync(zoneId);
-            //List<EventZone> eventZone = dbContext.EventZone.Where(ez => ez.ZoneId == zoneId && ez.EventId == eventId).ToList();
-            //EventZone eventZone = await this.dbContext.EventZone.FirstOrDefaultAsync(ez => ez.EventId == eventId && ez.ZoneId == zoneId);
 
             User user = await this.dbContext.User.FindAsync(userId);
 
@@ -58,5 +54,7 @@ namespace Truextend.TicketDispenser.Data.Repository
 
             return tickets;
         }
+
+
     }
 }

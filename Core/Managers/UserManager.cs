@@ -65,5 +65,6 @@ namespace Truextend.TicketDispenser.Core.Managers
             return await _uow.UserRepository.GetByIdAsync(id) == null;
 
         }
+        
     }
 }

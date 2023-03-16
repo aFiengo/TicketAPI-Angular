@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Truextend.TicketDispenser.Core.Managers;
+using Truextend.TicketDispenser.Core.Models;
 using Truextend.TicketDispenser.Data.Models;
+using AutoMapper;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
 {
@@ -11,22 +13,26 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
     public class EventShowController : ControllerBase
     {
         private readonly EventShowManager _eventManager;
-        public EventShowController(EventShowManager eventManager)
+        private readonly IMapper _mapper;
+        public EventShowController(EventShowManager eventManager, IMapper mapper)
         {
             _eventManager = eventManager;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<ActionResult> GetEvents()
         {
-            IEnumerable<EventShow> eventShow = await _eventManager.GetAll();
-            return Ok(eventShow);
+            IEnumerable<EventShow> eventShows = await _eventManager.GetAll();
+            IEnumerable<EventShowDTO> eventShowDTOs = _mapper.Map<IEnumerable<EventShowDTO>>(eventShows);
+            return Ok(eventShowDTOs);
         }
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> GetEventById(int id)
         {
             EventShow eventShow = await _eventManager.GetById(id);
-            return Ok(eventShow);
+            EventShowDTO eventShowDTO =  _mapper.Map<EventShowDTO>(eventShow);
+            return Ok(eventShowDTO);
         }
         [HttpPost]
         public async Task<ActionResult> CreateEventShow(EventShow eventToAdd)

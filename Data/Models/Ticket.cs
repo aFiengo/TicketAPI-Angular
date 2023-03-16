@@ -13,6 +13,7 @@ namespace Truextend.TicketDispenser.Data.Models
         public int EventShowId { get; set; }
         public EventShow EventShow { get; set; }
         public int ZoneId { get; set; }
+        public Zone Zone { get; set; }
         public int Quantity { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }

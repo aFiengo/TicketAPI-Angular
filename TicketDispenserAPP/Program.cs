@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using Truextend.TicketDispenser.Core;
 using Truextend.TicketDispenser.Core.Managers;
 using Truextend.TicketDispenser.Data;
+using Truextend.TicketDispenser.Core.Models;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,8 @@ builder.Services.AddTransient<UserManager>();
 builder.Services.AddTransient<TicketManager>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
