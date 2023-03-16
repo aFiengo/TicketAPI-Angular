@@ -59,18 +59,25 @@ namespace Truextend.TicketDispenser.Data.Repository
 
         public async Task<IEnumerable<Ticket>> GetAllTickets()
         {
-            List<Ticket> tickets = dbContext.Ticket
+            try {
+                List<Ticket> tickets = dbContext.Ticket
                                             .Include(t => t.EventShow)
                                                 .ThenInclude(e => e.EventVenues)
                                                     .ThenInclude(ev => ev.Venue)
-                                            .Include(t => t.EventShow)
-                                                .ThenInclude(e => e.EventZones)
-                                                    .ThenInclude(ez => ez.Zone)
+                                                .Include(t => t.EventShow)
+                                                    .ThenInclude(e => e.EventZones)
+                                                        .ThenInclude(ez => ez.Zone)
                                             .Include(t => t.User)
                                             .ToList();
 
-            return tickets;
+                return tickets;
 
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            
         }
     }
 }

@@ -57,17 +57,17 @@ namespace Truextend.TicketDispenser.Data
                 .HasForeignKey(ez => ez.ZoneId);
 
             modelBuilder.Entity<EventVenue>()
-                .HasKey(ez => new { ez.EventId, ez.VenueId });
+                .HasKey(ev => new { ev.EventId, ev.VenueId });
 
             modelBuilder.Entity<EventVenue>()
-                .HasOne(ez => ez.Event)
+                .HasOne(ev => ev.Event)
                 .WithMany(b => b.EventVenues)
-                .HasForeignKey(ez => ez.EventId);
+                .HasForeignKey(ev => ev.EventId);
 
             modelBuilder.Entity<EventVenue>()
-                .HasOne(ez => ez.Venue)
+                .HasOne(ev => ev.Venue)
                 .WithMany(c => c.EventVenues)
-                .HasForeignKey(ez => ez.VenueId);
+                .HasForeignKey(ev => ev.VenueId);
         }
     }
 }
