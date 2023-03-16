@@ -9,11 +9,11 @@ namespace Truextend.TicketDispenser.Data.Models
 { 
     public class Ticket : Entity
     {
-        public Guid Id { get; set; }
         public int EventShowId { get; set; }
         public EventShow EventShow { get; set; }
+
+        public int VenueId { get; set; }
         public int ZoneId { get; set; }
-        public int Quantity { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
 

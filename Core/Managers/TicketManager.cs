@@ -1,27 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Bcpg;
-using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using AutoMapper;
 using Truextend.TicketDispenser.Core.Managers.Base;
+using Truextend.TicketDispenser.Core.Models;
 using Truextend.TicketDispenser.Data;
 using Truextend.TicketDispenser.Data.Models;
-using static Truextend.TicketDispenser.Core.Managers.TicketManager;
 
 namespace Truextend.TicketDispenser.Core.Managers
 {
-    public class TicketManager : IGenericManager<Ticket>
+    public class TicketManager : IGenericManager<TicketDTO>
     {
 
         private readonly IUnitOfWork _uow;
+        private readonly IMapper _mapper;
 
-        public TicketManager(IUnitOfWork uow) 
+        public TicketManager(IUnitOfWork uow, IMapper mapper) 
         {
             _uow = uow;   
+            _mapper = mapper;
 
         }
         public class TicketRequest
@@ -31,26 +25,28 @@ namespace Truextend.TicketDispenser.Core.Managers
             public int Quantity { get; set; }
             public int UserId { get; set; }
         }
-        public async Task<IEnumerable<Ticket>>Create(TicketRequest ticketRequest)
+        public async Task<IEnumerable<TicketDTO>>Create(TicketRequest ticketRequest)
         {
-            return await _uow.TicketRepository.CreateTicketAsync(ticketRequest.EventId, ticketRequest.ZoneId, ticketRequest.Quantity, ticketRequest.UserId);
+            IEnumerable<Ticket> tickets = await _uow.TicketRepository.CreateTicketAsync(ticketRequest.EventId, ticketRequest.ZoneId, ticketRequest.Quantity, ticketRequest.UserId);
+            return _mapper.Map<IEnumerable<TicketDTO>>(tickets);
         }
-        public async Task<IEnumerable<Ticket>> GetAll()
-        {
-            return await _uow.TicketRepository.GetAllAsync();
+        public async Task<IEnumerable<TicketDTO>> GetAll()
+        { 
+            IEnumerable<Ticket> tickets = await _uow.TicketRepository.GetAllTickets();
+            return _mapper.Map<IEnumerable<TicketDTO>>(tickets);
         }
 
-        public Task<Ticket> GetById(int id)
+        public Task<TicketDTO> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Ticket> Create(Ticket item)
+        public Task<TicketDTO> Create(TicketDTO item)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Ticket> Update(int id, Ticket item)
+        public Task<TicketDTO> Update(int id, TicketDTO item)
         {
             throw new NotImplementedException();
         }

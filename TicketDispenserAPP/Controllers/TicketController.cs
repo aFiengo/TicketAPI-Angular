@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Truextend.TicketDispenser.Core.Managers;
-using Truextend.TicketDispenser.Data.Models;
+using Truextend.TicketDispenser.Core.Models;
 using static Truextend.TicketDispenser.Core.Managers.TicketManager;
 
 namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
@@ -19,13 +19,13 @@ namespace Truextend.TicketDispenser.TicketDispenserAPI.Controllers
         [Route("generate")]
         public async Task<IActionResult> GenerateTickets([FromBody] TicketRequest ticketRequest)
         {
-            IEnumerable<Ticket> tickets = await _ticketManager.Create(ticketRequest);
+            IEnumerable<TicketDTO> tickets = await _ticketManager.Create(ticketRequest);
             return Ok(tickets);
         }
         [HttpGet]
         public async Task<IActionResult> GetAllTickets()
         {
-            IEnumerable<Ticket> tickets = await _ticketManager.GetAll();
+            IEnumerable<TicketDTO> tickets = await _ticketManager.GetAll();
             return Ok(tickets);
         }
     }

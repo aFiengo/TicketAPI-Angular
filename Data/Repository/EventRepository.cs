@@ -18,7 +18,8 @@ namespace Truextend.TicketDispenser.Data.Repository
         {
             return await dbContext.EventShow
             .Include(e => e.Category)
-            .Include(e => e.Venue)
+            .Include(e => e.EventVenues)
+                .ThenInclude(ev => ev.Venue)
             .Include(e => e.EventZones)
                 .ThenInclude(ez => ez.Zone)
             .ToListAsync();
@@ -27,7 +28,8 @@ namespace Truextend.TicketDispenser.Data.Repository
         {
             return await dbContext.EventShow
             .Include(e => e.Category)
-            .Include(e => e.Venue)
+            .Include(e => e.EventVenues)
+                .ThenInclude(ev => ev.Venue)
             .Include(e => e.EventZones)
                 .ThenInclude(ez => ez.Zone)
             .FirstOrDefaultAsync(e => e.Id == id);

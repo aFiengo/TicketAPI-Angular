@@ -35,10 +35,6 @@ namespace Truextend.TicketDispenser.Data
                 .WithMany(es =>es.EventShows)
                 .HasForeignKey(e => e.CategoryId);
 
-            modelBuilder.Entity<Venue>()
-                .HasMany(v => v.EventShows)
-                .WithOne(es => es.Venue);
-
             modelBuilder.Entity<User>()
                 .HasMany(t => t.Tickets)
                 .WithOne(u => u.User);
@@ -59,6 +55,19 @@ namespace Truextend.TicketDispenser.Data
                 .HasOne(ez => ez.Zone)
                 .WithMany(c => c.EventZones)
                 .HasForeignKey(ez => ez.ZoneId);
+
+            modelBuilder.Entity<EventVenue>()
+                .HasKey(ez => new { ez.EventId, ez.VenueId });
+
+            modelBuilder.Entity<EventVenue>()
+                .HasOne(ez => ez.Event)
+                .WithMany(b => b.EventVenues)
+                .HasForeignKey(ez => ez.EventId);
+
+            modelBuilder.Entity<EventVenue>()
+                .HasOne(ez => ez.Venue)
+                .WithMany(c => c.EventVenues)
+                .HasForeignKey(ez => ez.VenueId);
         }
     }
 }

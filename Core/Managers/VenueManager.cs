@@ -39,10 +39,6 @@ namespace Truextend.TicketDispenser.Core.Managers
             {
                 throw new Exception("A city is required");
             }
-            if (String.IsNullOrEmpty(venueToAdd.Country))
-            {
-                throw new Exception("A country is required");
-            }
             
             return await _uow.VenueRepository.CreateAsync(venueToAdd);
         }
@@ -53,7 +49,6 @@ namespace Truextend.TicketDispenser.Core.Managers
             {
                 venue.Name = venueToUpdate.Name;
                 venue.City = venueToUpdate.City;
-                venue.Country = venueToUpdate.Country;
                 venue.SeatedCapacity = venueToUpdate.SeatedCapacity;
                 venue.FieldCapacity = venueToUpdate.FieldCapacity;
                 

@@ -11,5 +11,7 @@ namespace Truextend.TicketDispenser.Data.Repository.Interfaces
     public interface ITicketRepository : IRepository<Ticket>
     {
         Task<IEnumerable<Ticket>> CreateTicketAsync(int eventId, int zoneId ,int quantity, int userId);
+
+        Task<IEnumerable<Ticket>> GetAllTickets();
     }
 }
